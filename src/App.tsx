@@ -11,7 +11,10 @@ function App() {
         <h1> Nancy Onyejiaka </h1>
         <h2> CS 5610: Web Development, SEC 02, Summer Full 2024 </h2>
         <h3>
-          <a href="https://github.com/nancyonyejiaka/kanbas-react-web-app">
+          <a
+            id="wd-github"
+            href="https://github.com/nancyonyejiaka/kanbas-react-web-app"
+          >
             Kanbas Repository
           </a>
         </h3>
