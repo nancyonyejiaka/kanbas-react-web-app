@@ -18,9 +18,9 @@ export default function Dashboard() {
             </p>
             <a href="#/Kanbas/Courses/Home"> Go </a>
           </div>
-          <div className="wd-dashboard-course"> ... </div>
-          <div className="wd-dashboard-course"> ... </div>
         </div>
+          <div className="wd-dashboard-course"> ... </div>
+          <div className="wd-dashboard-course"> ... </div>
       </div>
     </div>
   );
