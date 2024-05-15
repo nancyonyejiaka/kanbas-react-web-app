@@ -55,10 +55,17 @@ export default function Lab1() {
           <li>Flip and cook the other side.</li>
           <li>Serve and enjoy!</li>
         </ol>
+        <h5> Another Ordered List </h5>
+        <ol id="wd-my-favorite-recipe">
+          <li> Jollof Rice </li>
+        </ol>
         <h5>Unordered List Tag</h5>
         My favorite books (in no particular order)
         <ul id="wd-my-books">
+          <li>The Hunger Games</li>
           <li>Dune</li>
+          <li>The Girl With All The Gifts</li>
+          <li>Handmaid's Tale</li>
           <li>Lord of the Rings</li>
           <li>Ender's Game</li>
           <li>Red Mars</li>
@@ -95,11 +102,53 @@ export default function Lab1() {
               <td>2/17/21</td>
               <td>95</td>
             </tr>
+            <tr>
+              <td>Q4</td>
+              <td>Java</td>
+              <td>2/24/21</td>
+              <td>93</td>
+            </tr>
+            <tr>
+              <td>Q5</td>
+              <td>Python</td>
+              <td>3/3/21</td>
+              <td>88</td>
+            </tr>
+            <tr>
+              <td>Q6</td>
+              <td>React</td>
+              <td>3/10/21</td>
+              <td>92</td>
+            </tr>
+            <tr>
+              <td>Q7</td>
+              <td>Node.js</td>
+              <td>3/17/21</td>
+              <td>87</td>
+            </tr>
+            <tr>
+              <td>Q8</td>
+              <td>Database</td>
+              <td>3/24/21</td>
+              <td>91</td>
+            </tr>
+            <tr>
+              <td>Q9</td>
+              <td>Algorithms</td>
+              <td>3/31/21</td>
+              <td>89</td>
+            </tr>
+            <tr>
+              <td>Q10</td>
+              <td>Data Structures</td>
+              <td>4/7/21</td>
+              <td>94</td>
+            </tr>
           </tbody>
           <tfoot>
             <tr>
               <td colSpan={3}>Average</td>
-              <td>90</td>
+              <td>90.4</td>
             </tr>
           </tfoot>
         </table>
@@ -151,6 +200,7 @@ export default function Lab1() {
           {/* copy rest of form elements here  */}
         </form>
       </div>
+
       <h5>Text boxes</h5>
       <label>Biography:</label>
       <br />
@@ -163,6 +213,7 @@ export default function Lab1() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </textarea>
+
       <h5 id="wd-buttons">Buttons</h5>
       <button
         id="wd-all-good"
@@ -171,8 +222,10 @@ export default function Lab1() {
       >
         Hello World!
       </button>
+
       <h5>File upload</h5>
       <input id="wd-upload" type="file" />
+
       <h5 id="wd-radio-buttons">Radio buttons</h5>
       <label>Favorite movie genre:</label>
       <br />
@@ -187,6 +240,7 @@ export default function Lab1() {
       <br />
       <input type="radio" name="radio-genre" id="wd-radio-fantasy" />
       <label htmlFor="wd-radio-fantasy">Fantasy</label>
+
       <h5 id="wd-checkboxes">Checkboxes</h5>
       <label>Favorite movie genre:</label>
       <br />
@@ -201,6 +255,7 @@ export default function Lab1() {
       <br />
       <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy" />
       <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
+      
       <h4 id="wd-dropdowns">Dropdowns</h4>
       <h5>Select one</h5>
       <label htmlFor="wd-select-one-genre"> Favorite movie genre: </label>
@@ -213,6 +268,7 @@ export default function Lab1() {
         </option>
         <option value="FANTASY">Fantasy</option>
       </select>
+      
       <h5>Select many</h5>
       <label htmlFor="wd-select-many-genre"> Favorite movie genres: </label>
       <br />
@@ -226,6 +282,7 @@ export default function Lab1() {
         </option>
         <option value="FANTASY">Fantasy</option>
       </select>
+      
       <h4>Other HTML field types</h4>
       <label htmlFor="wd-text-fields-email"> Email: </label>
       <input
@@ -254,6 +311,7 @@ export default function Lab1() {
       <label htmlFor="wd-text-fields-dob"> Date of birth: </label>
       <input type="date" id="wd-text-fields-dob" value="2000-01-21" />
       <br />
+      
       <h4>Anchor tag</h4>
       Please
       <a href="https://www.lipsum.com">click here</a>

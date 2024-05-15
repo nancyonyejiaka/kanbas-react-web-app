@@ -2,6 +2,16 @@ export default function KanbasNavigation() {
   return (
     <ul id="wd-kanbas-navigation">
       <li>
+        <a
+          id="wd-neu-link"
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.northeastern.edu/"
+        >
+          Northeastern
+        </a>
+      </li>
+      <li>
         <a id="wd-account-link" href="#/Kanbas/Account">
           Account
         </a>
