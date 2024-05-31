@@ -1,0 +1,43 @@
+#wd-dashboard-courses {
+  margin-left: 20px;
+}
+
+#wd-dashboard-title {
+  font-weight: 300; /* font weight light */
+}
+
+.wd-dashboard-course {
+  width: 262px;
+  margin-bottom: 36px;
+}
+
+.row-cols-1 .wd-dashboard-course {
+  margin-bottom: 36px;
+}
+
+.row-cols-sm-2 .wd-dashboard-course,
+.row-cols-md-3 .wd-dashboard-course,
+.row-cols-lg-4 .wd-dashboard-course {
+  margin-bottom: 36px;
+}
+
+.wd-course-title {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.wd-dashboard-course-section {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 300; /* font weight light */
+  color: gray;
+  margin-bottom: px;
+}
+
+.wd-dashboard-course-term {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: normal;
+  color: gray;
+  margin-bottom: 4px;
+}
