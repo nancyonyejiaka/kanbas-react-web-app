@@ -25,7 +25,7 @@ export default function ModulesControls() {
             <a
               id="wd-publish-all-modules-and-items-btn"
               className="dropdown-item"
-              href="#/Kanbas/Courses/1234/Modules" /* TODO: update with actual link */
+              href="#/Kanbas/Courses/1234/Home" /* TODO: update with actual link */
             >
               <GreenCheckmark />
               Publish all modules and items
@@ -35,7 +35,7 @@ export default function ModulesControls() {
             <a
               id="wd-publish-modules-only-button"
               className="dropdown-item"
-              href="#/Kanbas/Courses/1234/Modules" /* TODO: update with actual link */
+              href="#/Kanbas/Courses/1234/Home" /* TODO: update with actual link */
             >
               <GreenCheckmark />
               Publish modules only
@@ -48,7 +48,7 @@ export default function ModulesControls() {
             <a
               id="wd-unpublish-all-modules-and-items"
               className="dropdown-item"
-              href="#/Kanbas/Courses/1234/Modules" /* TODO: update with actual link */
+              href="#/Kanbas/Courses/1234/Home" /* TODO: update with actual link */
             >
               <GreenCheckmark />
               Unpublish all modules and items
@@ -58,7 +58,7 @@ export default function ModulesControls() {
             <a
               id="wd-unpublish-modules-only"
               className="dropdown-item"
-              href="#/Kanbas/Courses/1234/Modules" /* TODO: update with actual link */
+              href="#/Kanbas/Courses/1234/Home" /* TODO: update with actual link */
             >
               <GreenCheckmark />
               Unpublish modules only

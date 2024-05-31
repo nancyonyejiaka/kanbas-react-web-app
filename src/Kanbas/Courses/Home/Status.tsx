@@ -1,16 +1,13 @@
 import { MdDoNotDisturbAlt } from 'react-icons/md';
 import { FaCheckCircle } from 'react-icons/fa';
 import { BiImport } from 'react-icons/bi';
-import { LiaFileImportSolid } from 'react-icons/lia';
 import { FaCreativeCommons } from 'react-icons/fa';
 import { PiCrosshairLight } from 'react-icons/pi';
 import { BiSolidBarChartAlt2 } from 'react-icons/bi';
 import { SiGoogleanalytics } from 'react-icons/si';
 import { CiBullhorn } from 'react-icons/ci';
 import { GoBell } from 'react-icons/go';
-{
-  /* Find more icons */
-}
+
 export default function CourseStatus() {
   return (
     <div id="wd-course-status" style={{ width: '300px' }}>
@@ -62,17 +59,3 @@ export default function CourseStatus() {
     </div>
   );
 }
-
-//       <br />
-//       <button>Course Home Page</button>
-//       <br />
-//       <button>View Course Stream</button>
-//       <br />
-//       <button>New Announcement</button>
-//       <br />
-//       <button>New Analytics</button>
-//       <br />
-//       <button>View Course Notifications</button>
-//     </div>
-//   );
-// }
