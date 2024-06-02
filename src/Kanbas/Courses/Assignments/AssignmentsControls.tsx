@@ -32,9 +32,10 @@ export default function AssignmentsControls() {
           className="form-control form-control-lg"
           id="wd-assignments-search"
           placeholder="Search..."
+          style={{ paddingLeft: '2.5rem' }}
         />
         <CiSearch
-          className="position-absolute"
+          className="position-absolute "
           style={{
             top: '50%',
             left: '10px',

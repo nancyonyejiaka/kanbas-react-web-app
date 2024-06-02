@@ -1,179 +1,299 @@
+import React from 'react';
+import EditorControls from './EditorControls';
+
 export default function AssignmentEditor() {
   return (
-    <div id="wd-assignments-editor">
+    <div
+      id="wd-assignments-editor"
+      style={{ padding: '1.5rem', fontFamily: 'Arial, sans-serif' }}
+    >
       <label htmlFor="wd-name">
-        {' '}
-        <h4> Assignment Name </h4>
+        <h6>Assignment Name</h6>
       </label>
-      <input id="wd-name" value="A1 - ENV + HTML" />
+      <input
+        type="text"
+        className="form-control form-control-lg"
+        id="wd-name"
+        value="A1"
+        style={{
+          padding: '0.5rem',
+          fontSize: '1rem',
+          width: '100%',
+          borderRadius: '0.25rem',
+          border: '1px solid #ced4da',
+        }}
+      />
       <br />
-      <br />
-      <textarea id="wd-description" rows={8} cols={50}>
-        The assignment is available online Submit a link to the landing page of
+      <textarea
+        id="wd-description"
+        className="form-control"
+        rows={8}
+        style={{
+          width: '100%',
+          padding: '0.5rem',
+          fontSize: '1rem',
+          borderRadius: '0.25rem',
+          border: '1px solid #ced4da',
+        }}
+      >
+        The assignment is available online. Submit a link to the landing page of
         your Web application running on Netlify. The landing page should include
-        the following: Your full name and section Links to each of the lab
-        assignments Link to the Kanbas application Links to all relevant source
-        code repositories The Kanbas application should include a link to
+        the following: - Your full name and section - Links to each of the lab
+        assignments - Link to the Kanbas application - Links to all relevant
+        source code repositories The Kanbas application should include a link to
         navigate back to the landing page.
       </textarea>
       <br />
-      <br />
-      <table>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-points">Points</label>
-          </td>
-          <td>
-            <input id="wd-points" value={100} />
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-group">Assignment Group</label>
-          </td>
-          <td>
-            <select id="wd-group">
-              <option selected value="ASSIGNMENTS">
-                ASSIGNMENTS
-              </option>
-            </select>
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-display-grade-as">Display Grade as</label>
-          </td>
-          <td>
-            <select id="wd-display-grade-as">
-              <option selected value="PERCENT">
-                Percentage
-              </option>
-            </select>
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-submission-type">Submission Type</label>
-          </td>
-          <td>
-            <select id="wd-submission-type">
-              <option selected value="ONLINE">
-                Online
-              </option>
-            </select>
-          </td>
-        </tr>
-        <br />
-        <tr>
-          <td align="right" valign="top"></td>
-          <td>
-            <label htmlFor="wd-submission-type">Online Entry Options</label>
-            <td>
-              <input
-                type="checkbox"
-                name="check-submission-type"
-                id="wd-text-entry"
-              />
-              <label htmlFor="wd-text-entry">Text Entry</label>
 
-              <br />
+      <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
+        <div style={{ flex: '1', textAlign: 'right', paddingRight: '1rem' }}>
+          <label htmlFor="wd-points">Points</label>
+        </div>
+        <div style={{ flex: '2' }}>
+          <input
+            type="text"
+            className="form-control form-control-lg"
+            id="wd-points"
+            value={100}
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              fontSize: '1rem',
+              borderRadius: '0.25rem',
+              border: '1px solid #ced4da',
+            }}
+          />
+        </div>
+      </div>
 
-              <input
-                type="checkbox"
-                name="check-submission-type"
-                id="wd-website-url"
-              />
-              <label htmlFor="wd-website-url">Website URL</label>
+      <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
+        <div style={{ flex: '1', textAlign: 'right', paddingRight: '1rem' }}>
+          <label htmlFor="wd-assignment-group">Assignment Group</label>
+        </div>
+        <div style={{ flex: '2' }}>
+          <select
+            className="form-select"
+            id="wd-assignment-group"
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              fontSize: '1rem',
+              borderRadius: '0.25rem',
+              border: '1px solid #ced4da',
+            }}
+          >
+            <option value="ASSIGNMENTS" selected>
+              ASSIGNMENTS
+            </option>
+            <option value="QUIZZES">QUIZZES</option>
+            <option value="EXAMS">EXAMS</option>
+            <option value="LABS">LABS</option>
+          </select>
+        </div>
+      </div>
 
-              <br />
+      <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
+        <div style={{ flex: '1', textAlign: 'right', paddingRight: '1rem' }}>
+          <label htmlFor="wd-display-grade">Display Grade as</label>
+        </div>
+        <div style={{ flex: '2' }}>
+          <select
+            className="form-select"
+            id="wd-display-grade"
+            style={{
+              width: '100%',
+              padding: '0.5rem',
+              fontSize: '1rem',
+              borderRadius: '0.25rem',
+              border: '1px solid #ced4da',
+            }}
+          >
+            <option value="PERCENTAGE" selected>
+              PERCENTAGE
+            </option>
+            <option value="NUMBER">NUMBER</option>
+            <option value="LETTER">LETTER</option>
+          </select>
+        </div>
+      </div>
 
-              <input
-                type="checkbox"
-                name="check-submission-type"
-                id="wd-website-url"
-              />
-              <label htmlFor="wd-website-url">Website URL</label>
-
-              <br />
-
-              <input
-                type="checkbox"
-                name="check-submission-type"
-                id="wd-media-recordings"
-              />
-              <label htmlFor="wd-media-recordings">Media Recordings</label>
-
-              <br />
-
-              <input
-                type="checkbox"
-                name="check-submission-type"
-                id="wd-student-annotation"
-              />
-              <label htmlFor="wd-student-annotation">Student Annotations</label>
-
-              <br />
-
-              <input
-                type="checkbox"
-                name="check-submission-type"
-                id="wd-file-upload"
-              />
-              <label htmlFor="wd-file-upload">File Upload</label>
-              <br />
-              <br />
-            </td>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" valign="top">
-            <label htmlFor="wd-assign-to">Assign</label>
-          </td>
-          <td>
-            <label htmlFor="wd-assign-to">Assign to</label>
-            <br />
-            <input id="wd-assign-to" value="Everyone" />
-            <br />
-
-            <br />
-            <label htmlFor="wd-due-date">Due</label>
-            <br />
-            <input type="date" id="wd-due-date" value="2024-05-13" />
-            <br />
-            <br />
-
-            <td>
-              <label htmlFor="wd-available-from">Available from</label>
-              <br />
-              <input type="date" id="wd-available-from" value="2024-05-06" />
-            </td>
-
-            <td>
-              <label htmlFor="wd-available-until">Available until</label>
-              <br />
-              <input type="date" id="wd-available-until" value="2024-05-20" />
-            </td>
-          </td>
-        </tr>
-        <tr>
-          <td colSpan={2}>
-            <hr
+      <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
+        <div style={{ flex: '1', textAlign: 'right', paddingRight: '1rem' }}>
+          <label htmlFor="wd-submission-type">Submission Type</label>
+        </div>
+        <div style={{ flex: '2' }}>
+          <div
+            style={{
+              border: '1px solid #ced4da',
+              borderRadius: '0.25rem',
+              padding: '1rem',
+            }}
+          >
+            <select
+              className="form-select"
+              id="wd-submission-type"
               style={{
-                borderColor: '#ccc',
+                width: '100%',
+                padding: '0.5rem',
+                fontSize: '1rem',
+                borderRadius: '0.25rem',
+                border: '1px solid #ced4da',
               }}
-            />
-          </td>
-        </tr>
-        <br />
-        <td align="right" valign="top">
-          <button>Cancel</button> <button>Save</button>
-        </td>
+            >
+              <option value="ONLINE" selected>
+                ONLINE
+              </option>
+              <option value="IN-PERSON">IN-PERSON</option>
+            </select>
+            <h6 style={{ marginTop: '1rem' }}>Online Entry Options</h6>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <label>
+                <input type="checkbox" name="entryOptions" value="textEntry" />{' '}
+                Text Entry
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entryOptions"
+                  value="websiteUrl"
+                  defaultChecked
+                />{' '}
+                Website URL
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entryOptions"
+                  value="mediaRecordings"
+                />{' '}
+                Media Recordings
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entryOptions"
+                  value="studentAnnotation"
+                />{' '}
+                Student Annotation
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="entryOptions"
+                  value="fileUploads"
+                />{' '}
+                File Uploads
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        {/* Complete on your own */}
-      </table>
+      <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
+        <div style={{ flex: '1', textAlign: 'right', paddingRight: '1rem' }}>
+          <label htmlFor="assignTo">Assign</label>
+        </div>
+        <div style={{ flex: '2' }}>
+          <div
+            style={{
+              border: '1px solid #ced4da',
+              borderRadius: '0.25rem',
+              padding: '1rem',
+            }}
+          >
+            <div style={{ marginBottom: '1rem' }}>
+              <label
+                htmlFor="assignTo"
+                style={{ display: 'block', marginBottom: '0.5rem' }}
+              >
+                <h5>
+                  <strong>Assign to</strong>
+                </h5>
+              </label>
+              <select
+                className="form-select"
+                id="wd-display-grade"
+                style={{
+                  width: '100%',
+                  padding: '0.5rem',
+                  fontSize: '1rem',
+                  borderRadius: '0.25rem',
+                  border: '1px solid #ced4da',
+                }}
+              >
+                <option value="EVERYONE" selected>
+                  Everyone
+                </option>
+              </select>
+            </div>
+
+            <div style={{ marginBottom: '1rem' }}>
+              <label
+                htmlFor="dueDate"
+                style={{ display: 'block', marginBottom: '0.5rem' }}
+              >
+                <strong>Due</strong>
+              </label>
+              <input
+                type="datetime-local"
+                id="dueDate"
+                defaultValue="2024-05-13T23:59"
+                style={{
+                  width: '100%',
+                  padding: '0.5rem',
+                  fontSize: '1rem',
+                  borderRadius: '0.25rem',
+                  border: '1px solid #ced4da',
+                }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <div style={{ flex: '1' }}>
+                <label
+                  htmlFor="availableFrom"
+                  style={{ display: 'block', marginBottom: '0.5rem' }}
+                >
+                  <strong>Available from</strong>
+                </label>
+                <input
+                  type="datetime-local"
+                  id="availableFrom"
+                  defaultValue="2024-05-06T23:59"
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    fontSize: '1rem',
+                    borderRadius: '0.25rem',
+                    border: '1px solid #ced4da',
+                  }}
+                />
+              </div>
+              <div style={{ flex: '1' }}>
+                <label
+                  htmlFor="until"
+                  style={{ display: 'block', marginBottom: '0.5rem' }}
+                >
+                  <strong>Until</strong>
+                </label>
+                <input
+                  type="datetime-local"
+                  id="until"
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    fontSize: '1rem',
+                    borderRadius: '0.25rem',
+                    border: '1px solid #ced4da',
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <EditorControls />
     </div>
   );
 }
