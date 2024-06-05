@@ -41,9 +41,7 @@ export default function ModulesControls() {
               Publish modules only
             </a>
           </li>
-          {/* Create two more items with IDs wd-unpublish-all-modules-and-items and
-              wd-unpublish-modules-only with labels Unpublish all modules and items
-              and Unpublish modules only */}
+
           <li>
             <a
               id="wd-unpublish-all-modules-and-items"

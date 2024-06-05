@@ -1,0 +1,9 @@
+.wd-grades-table td,
+.wd-grades-table th {
+  border: 1px solid #dee2e6;
+}
+
+.assignment-grades {
+    display: flex;
+    justify-content: center;
+  }
