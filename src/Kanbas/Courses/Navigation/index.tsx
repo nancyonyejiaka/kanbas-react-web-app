@@ -43,7 +43,7 @@ export default function CoursesNavigation() {
         Zoom
       </a>
       <a
-        id="wd-course-quizzes-link"
+        id="wd-course-assignments-link"
         href="#/Kanbas/Courses/1234/Assignments"
         className={`list-group-item border border-0 ${
           pathname.includes('/Assignments') ? 'active' : 'text-danger'
@@ -52,7 +52,7 @@ export default function CoursesNavigation() {
         Assignments
       </a>
       <a
-        id="wd-course-assignments-link"
+        id="wd-course-quizzes-link"
         href="#/Kanbas/Courses/1234/Quizzes"
         className={`list-group-item border border-0 ${
           pathname.includes('/Quizzes') ? 'active' : 'text-danger'
