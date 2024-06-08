@@ -1,20 +1,30 @@
+import { useParams } from 'react-router';
+import * as db from '../../Database';
 import React from 'react';
 import EditorControls from './EditorControls';
 
 export default function AssignmentEditor() {
+  console.log(`PARAMS: ${JSON.stringify(useParams())}`);
+  const { id } = useParams();
+  const assignments = db.assignments;
+  const assignment = assignments.find(
+    (assignment: any) => assignment._id === id
+  );
+  console.log(`ASSIGNMENTS: ${JSON.stringify(assignment)}`);
+
   return (
     <div
       id="wd-assignments-editor"
       style={{ padding: '1.5rem', fontFamily: 'Arial, sans-serif' }}
     >
       <label htmlFor="wd-name">
-        <h6>Assignment Name</h6>
+        <h6>{assignment?.title}</h6>
       </label>
       <input
         type="text"
         className="form-control form-control-lg"
         id="wd-name"
-        value="A1"
+        value={`${assignment?.title}`}
         style={{
           padding: '0.5rem',
           fontSize: '1rem',
@@ -36,12 +46,7 @@ export default function AssignmentEditor() {
           border: '1px solid #ced4da',
         }}
       >
-        The assignment is available online. Submit a link to the landing page of
-        your Web application running on Netlify. The landing page should include
-        the following: - Your full name and section - Links to each of the lab
-        assignments - Link to the Kanbas application - Links to all relevant
-        source code repositories The Kanbas application should include a link to
-        navigate back to the landing page.
+        {assignment?.description}
       </textarea>
       <br />
 
@@ -54,7 +59,7 @@ export default function AssignmentEditor() {
             type="text"
             className="form-control form-control-lg"
             id="wd-points"
-            value={100}
+            value={`${assignment?.points}`}
             style={{
               width: '100%',
               padding: '0.5rem',

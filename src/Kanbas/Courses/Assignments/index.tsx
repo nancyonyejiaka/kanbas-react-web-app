@@ -63,7 +63,7 @@ export default function Assignments() {
                       >
                         <a
                           className="wd-assignment-link"
-                          href="#/Kanbas/Courses/1234/Assignments/123"
+                          href={`#/Kanbas/Courses/${assignment.course}/Assignments/${assignment._id}`}
                           style={{
                             textDecoration: 'none',
                             color: 'black',
