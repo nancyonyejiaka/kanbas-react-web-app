@@ -1,10 +1,12 @@
 import React from 'react';
-import { CiSearch } from 'react-icons/ci';
+import { Link, useLocation } from 'react-router-dom';
 import { TbFileImport } from 'react-icons/tb';
 import { TbFileExport } from 'react-icons/tb';
 import { IoMdSettings } from 'react-icons/io';
 
 export default function GradeControls() {
+  const { pathname } = useLocation();
+  const course = pathname.split('/')[3];
   return (
     <div id="wd-assignment-controls" className="text-nowrap">
       <div className="d-inline me-1 float-end">
@@ -28,13 +30,14 @@ export default function GradeControls() {
         </button>
         <ul className="dropdown-menu">
           <li>
-            <a
+            <Link
               id="wd-export-all-btn"
+              key={`/Kanbas/Courses/${course}`}
+              to={`/Kanbas/Courses/${course}/Grades`}
               className="dropdown-item"
-              href="#/Kanbas/Courses/1234/Grades" /* TODO: update with actual link */
             >
               Export All
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -48,25 +51,6 @@ export default function GradeControls() {
           Import
         </button>
       </div>
-      {/* <div className="position-relative flex-grow-1 me-5 float-end ">
-        <input
-          type="text"
-          className="form-control form-control-lg"
-          id="wd-assignments-search"
-          placeholder="Search..."
-          style={{ paddingLeft: '2.5rem' }}
-        />
-        <CiSearch
-          className="position-absolute "
-          style={{
-            top: '50%',
-            left: '10px',
-            transform: 'translateY(-50%)',
-            color: 'gray',
-            fontSize: '1.5rem',
-          }}
-        />
-      </div> */}
     </div>
   );
 }

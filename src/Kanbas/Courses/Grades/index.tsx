@@ -1,12 +1,39 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
+import * as db from '../../Database';
 import GradeControls from './GradeControls';
 import { CiSearch } from 'react-icons/ci';
 import { BsChevronDown } from 'react-icons/bs';
-import { PiArrowSquareRightThin } from 'react-icons/pi';
 import { CiFilter } from 'react-icons/ci';
 import './index.css';
 
 export default function Grades() {
+  const { pathname } = useLocation();
+  const course = pathname.split('/')[3];
+  console.log(`PATHNAME: ${JSON.stringify(pathname)}`);
+  console.log(`COURSE ID: ${JSON.stringify(course)}`);
+
+  const assignments = [...db.assignments];
+  const courseAssignments = assignments.filter(
+    (assignment: any) => assignment.course === course
+  );
+
+  const grades = db.grades;
+  const courseGrades = grades.filter((grade: any) => grade.course === course);
+  console.log(`ASSIGNMENTS: ${JSON.stringify(courseGrades)}`);
+
+  const enrollments = db.enrollments;
+  const enrolled = enrollments.filter(
+    (enrollee: any) => enrollee.course === course
+  );
+  console.log(`ASSIGNMENTS: ${JSON.stringify(enrolled)}`);
+
+  const users = db.users;
+  const enrolledUserIds = [...enrolled].map((enrollment) => enrollment.user);
+  const roster = users.filter((student: any) =>
+    enrolledUserIds.includes(student._id)
+  );
+
   return (
     <div id="wd-grades">
       <GradeControls />
@@ -93,85 +120,33 @@ export default function Grades() {
             <thead>
               <tr>
                 <th>Student Name</th>
-                <th style={{ textAlign: 'center' }}>
-                  A1 SETUP
-                  <br />
-                  Out of 100
-                </th>
-                <th style={{ textAlign: 'center' }}>
-                  A2 HTML
-                  <br />
-                  Out of 100
-                </th>
-                <th style={{ textAlign: 'center' }}>
-                  A3 CSS
-                  <br />
-                  Out of 100
-                </th>
-                <th style={{ textAlign: 'center' }}>
-                  A4 BOOTSTRAP
-                  <br />
-                  Out of 100
-                </th>
+                {courseAssignments.map((assignment: any) => (
+                  <th style={{ textAlign: 'center' }}>
+                    {`${assignment?.title}`}
+                    <br />
+                    {`Out of ${assignment?.points}`}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="text-danger">Jane Adams</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>96.67%</td>
-                <td style={{ textAlign: 'center' }}>92.18%</td>
-                <td style={{ textAlign: 'center' }}>66.22%</td>
-              </tr>
-              <tr>
-                <td className="text-danger">Christina Allen</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-              </tr>
-              <tr>
-                <td className="text-danger">Samreen Ansari</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-              </tr>
-              <tr>
-                <td className="text-danger">Han Bao</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <div className="input-group" style={{ maxWidth: '120px' }}>
-                      <input
-                        type="text"
-                        defaultValue="88.03"
-                        className="form-control"
-                        style={{ textAlign: 'center' }}
-                      />
-                      <span className="input-group-text">
-                        <PiArrowSquareRightThin style={{ fontSize: '24px' }} />
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td style={{ textAlign: 'center' }}>98.99%</td>
-              </tr>
-              <tr>
-                <td className="text-danger">Mahi Sai Srinivas Bobbili</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>96.67%</td>
-                <td style={{ textAlign: 'center' }}>98.37%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-              </tr>
-              <tr>
-                <td className="text-danger">Siran Cao</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-                <td style={{ textAlign: 'center' }}>100%</td>
-              </tr>
+              {roster.map((student: any) => (
+                <tr>
+                  <td className="text-danger">{`${student.firstName} ${student.lastName}`}</td>
+                  {courseAssignments.map((assignment) => {
+                    const grade = grades.find(
+                      (grade) =>
+                        grade.student === student._id &&
+                        grade.assignment === assignment._id
+                    );
+                    return (
+                      <td key={assignment._id} style={{ textAlign: 'center' }}>
+                        {grade ? `${grade.grade}%` : '-'}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
