@@ -1,4 +1,4 @@
-import { useParams } from 'react-router';
+import { useParams, useLocation } from 'react-router-dom';
 import * as db from '../../Database';
 import React from 'react';
 import EditorControls from './EditorControls';
@@ -11,6 +11,10 @@ export default function AssignmentEditor() {
     (assignment: any) => assignment._id === id
   );
   console.log(`ASSIGNMENTS: ${JSON.stringify(assignment)}`);
+  const { pathname } = useLocation();
+  const course = pathname.split('/')[3]
+  console.log(`PATHNAME: ${JSON.stringify(pathname)}`);
+  console.log(`COURSE ID: ${JSON.stringify(course)}`);
 
   return (
     <div
@@ -242,7 +246,7 @@ export default function AssignmentEditor() {
               <input
                 type="datetime-local"
                 id="dueDate"
-                defaultValue="2024-05-13T23:59"
+                defaultValue={`${assignment?.due}`}
                 style={{
                   width: '100%',
                   padding: '0.5rem',
@@ -264,7 +268,7 @@ export default function AssignmentEditor() {
                 <input
                   type="datetime-local"
                   id="availableFrom"
-                  defaultValue="2024-05-06T23:59"
+                  defaultValue={`${assignment?.available}`}
                   style={{
                     width: '100%',
                     padding: '0.5rem',
