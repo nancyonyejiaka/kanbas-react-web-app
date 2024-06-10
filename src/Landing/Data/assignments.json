@@ -1,0 +1,24 @@
+[
+    {
+      "_id": "A1",
+      "title": "A1: Implementing the Kanbas User Interface",
+      "description": "This section walks through several exercises to familiarize with HTML. First setup a development environment and then practice several HTML exercises.",
+      "info": "https://docs.google.com/document/d/1Be6DuOX38sFftYGDGQm5AFEQ0XczSE8DZ1GzL1Jq-uo/edit",
+      "url": "https://a2--nancy-onyejiaka-kanbas.netlify.app/#/Kanbas/Dashboard"
+    },
+    {
+      "_id": "A2",
+      "title": "A2: Styling Kanbas with CSS and Bootstrap",
+      "description": "This section presents several CSS, Bootstrap, and React Icons exercises to practice and learn how to style HTML documents.",
+      "info": "https://docs.google.com/document/d/15HCbXzm5XIgrg4bpLZbyWGW8DHMjNeKeZTzrGlJ-7-0/edit?tab=t.0#heading=h.aacpadg8d0aw",
+      "url": "https://a2--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab2"
+    },
+    {
+      "_id": "A3",
+      "title": "A3: Implementing a Data Driven Kanbas Application",
+      "description": "This section presents JavaScript and React.js examples to program the browser, interact with the user, and generate dynamic user interfaces.",
+      "info": "https://docs.google.com/document/d/199D_kFcNpMcSCQOF-N5l0XZmdnWusdiT9VSwDPA98h8/edit#heading=h.lvo7cbqkc99x",
+      "url": "https://a3--nancy-onyejiaka-kanbas.netlify.app/#/Kanbas/Dashboard"
+    }
+  ]
+  

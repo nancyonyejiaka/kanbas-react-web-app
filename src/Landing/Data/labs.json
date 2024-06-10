@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "L1",
+    "title": "Lab 1: Implementing User Interfaces with HTML",
+    "description": "This section walks through several exercises to familiarize with HTML. First setup a development environment and then practice several HTML exercises.",
+    "url": "https://a1--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab1"
+  },
+  {
+    "_id": "L2",
+    "title": "Lab 2: Styling Web Pages with CSS",
+    "description": "This section presents several CSS, Bootstrap, and React Icons exercises to practice and learn how to style HTML documents.",
+    "url": "https://a2--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab2"
+  },
+  {
+    "_id": "L3",
+    "title": "Lab 3: Creating Single Page Applications with React.js",
+    "description": "This section presents JavaScript and React.js examples to program the browser, interact with the user, and generate dynamic user interfaces.",
+    "url": "https://a3--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab3"
+  }
+]
