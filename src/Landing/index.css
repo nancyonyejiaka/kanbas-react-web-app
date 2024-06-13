@@ -1,0 +1,49 @@
+#landing-lab {
+  margin-left: 20px;
+}
+
+#wd-dashboard-title {
+  font-weight: 300; /* font weight light */
+}
+
+.landing-lab-cards {
+  width: 262px;
+  margin-bottom: 36px;
+}
+
+.landing-card-link {
+  text-decoration: none;
+  color: #4a4a4a;
+  font-weight: bold !important;
+}
+
+.row-cols-1 .wd-dashboard-course {
+  margin-bottom: 36px;
+}
+
+.row-cols-sm-2 .wd-dashboard-course,
+.row-cols-md-3 .wd-dashboard-course,
+.row-cols-lg-4 .wd-dashboard-course {
+  margin-bottom: 36px;
+}
+
+.wd-course-title {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.wd-dashboard-course-section {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 300; /* font weight light */
+  color: gray;
+  margin-bottom: px;
+}
+
+.wd-dashboard-course-term {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: normal;
+  color: gray;
+  margin-bottom: 4px;
+}

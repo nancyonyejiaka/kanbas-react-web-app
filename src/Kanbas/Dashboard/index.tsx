@@ -28,7 +28,7 @@ export default function Dashboard() {
                 <div className="card rounded-3 overflow-hidden">
                   <img
                     src={`${course.image}`}
-                    height="{160}"
+                    height={160}
                     alt="courseImage"
                   />
                   <div className="card-body">
