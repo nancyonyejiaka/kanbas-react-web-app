@@ -13,7 +13,7 @@
     "description": "",
     "url": "https://a2--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab2",
     "image": "lab2.png",
-    "color": "#E6E6FA"
+    "color": "#FFFACD"
   },
   {
     "_id": "Lab3",
@@ -22,5 +22,13 @@
     "url": "https://a3--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab3",
     "image": "lab3.png",
     "color": "#FFD1DC"
+  },
+  {
+    "_id": "Lab3",
+    "title": "Lab 4: Managing State in React.js Application",
+    "description": "",
+    "url": "https://a4--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab4",
+    "image": "RS104.png",
+    "color": "##FFFACD"
   }
 ]
