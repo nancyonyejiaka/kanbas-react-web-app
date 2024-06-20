@@ -1,4 +1,3 @@
-import * as db from '../Database';
 import Assignments from './Assignments';
 import AssignmentEditor from './Assignments/Editor';
 import CoursesNavigation from './Navigation';
@@ -8,9 +7,8 @@ import Grades from './Grades';
 import { Navigate, Route, Routes, useParams, useLocation } from 'react-router';
 import { FaAlignJustify } from 'react-icons/fa6';
 
-export default function Courses() {
+export default function Courses({ courses }: { courses: any[]; }) {
   const { id } = useParams();
-  const courses = db.courses;
   const course = courses.find((course) => course._id === id);
   const { pathname } = useLocation();
 
