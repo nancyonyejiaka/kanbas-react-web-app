@@ -1,19 +1,60 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
+import Modal from 'react-modal';
 import { useParams } from 'react-router';
-import * as db from '../../Database';
 import AssignmentsControlsPanel from './AssignmentsControls';
 import AssignmentButtons from './AssignmentButtons';
-import AssignmentsControlButtons from './AssignmentControlButtons';
+import AssignmentControlButtons from './AssignmentControlButtons';
 import { BsGripVertical } from 'react-icons/bs';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { LuClipboardSignature } from 'react-icons/lu';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAssignment } from './reducer';
+import DeletionModal from './DeletionModal';
+
+Modal.setAppElement('#root');
+
+interface Assignment {
+  _id: string;
+  title: string;
+  description: string;
+  points: number;
+  due: string;
+  available: string;
+  until: string;
+  course: string;
+}
 
 export default function Assignments() {
   const { id } = useParams();
-  const assignments = [...db.assignments];
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const dispatch = useDispatch();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedAssignment, setSelectedAssignment] =
+    useState<Assignment | null>(null);
+
+  const openDeleteModal = (assignment: Assignment) => {
+    setSelectedAssignment(assignment);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedAssignment(null);
+    setModalIsOpen(false);
+  };
+
+  const handleDelete = () => {
+    if (selectedAssignment) {
+      dispatch(deleteAssignment(selectedAssignment._id));
+      closeModal();
+    }
+  };
 
   const getDate = (dateString: any): any => {
     const date = new Date(dateString);
-    const formalDateString = date.toLocaleString('en-US', {
+    return date.toLocaleString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -21,8 +62,6 @@ export default function Assignments() {
       minute: 'numeric',
       hour12: true,
     });
-
-    return formalDateString;
   };
 
   return (
@@ -38,18 +77,19 @@ export default function Assignments() {
             <BsGripVertical className="me-2 fs-3" />
             <IoMdArrowDropdown />
             <strong>ASSIGNMENTS</strong>
-            <AssignmentsControlButtons />
+            <AssignmentControlButtons />
           </div>
           <ul
             className="wd-assignment-items list-group rounded-0"
-            style={{
-              borderLeft: '4px solid green',
-            }}
+            style={{ borderLeft: '4px solid green' }}
           >
             {assignments
               .filter((assignment: any) => assignment.course === id)
               .map((assignment: any) => (
-                <li className="wd-assignment-item list-group-item p-3 ps-1 align-items-center">
+                <li
+                  className="wd-assignment-item list-group-item p-3 ps-1 align-items-center"
+                  key={assignment._id}
+                >
                   <div className="row">
                     <div className="col-auto d-flex align-items-center">
                       <BsGripVertical className="me-2 fs-3" />
@@ -96,6 +136,11 @@ export default function Assignments() {
                     </div>
                     <div className="col-auto d-flex align-items-right">
                       <AssignmentButtons />
+                      <AiOutlineDelete
+                        className="fs-4"
+                        style={{ cursor: 'pointer', color: 'red' }}
+                        onClick={() => openDeleteModal(assignment)}
+                      />
                     </div>
                   </div>
                 </li>
@@ -103,6 +148,11 @@ export default function Assignments() {
           </ul>
         </li>
       </ul>
+      <DeletionModal
+        show={modalIsOpen}
+        handleClose={closeModal}
+        handleConfirm={handleDelete}
+      />
     </div>
   );
 }

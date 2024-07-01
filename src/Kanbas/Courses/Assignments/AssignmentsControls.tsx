@@ -1,14 +1,19 @@
 import React from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { CiSearch } from 'react-icons/ci';
+import { useNavigate, useParams } from 'react-router-dom';
 import './index.css';
 
 export default function AssignmentsControls() {
+  const { id: courseId } = useParams();
+  const navigate = useNavigate();
+
   return (
     <div id="wd-assignment-controls" className="text-nowrap">
       <button
         id="wd-add-assignment-btn"
         className="btn btn-lg btn-danger me-1 float-end"
+        onClick={() => navigate(`/Kanbas/Courses/${courseId}/Assignments/new`)}
       >
         <FaPlus className="position-relative me-2" style={{ bottom: '1px' }} />
         Assignment

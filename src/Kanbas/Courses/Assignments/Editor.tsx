@@ -1,20 +1,74 @@
-import { useParams, useLocation } from 'react-router-dom';
-import * as db from '../../Database';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addAssignment, updateAssignment } from './reducer';
 import EditorControls from './EditorControls';
 
 export default function AssignmentEditor() {
   console.log(`PARAMS: ${JSON.stringify(useParams())}`);
-  const { id } = useParams();
-  const assignments = db.assignments;
-  const assignment = assignments.find(
-    (assignment: any) => assignment._id === id
+  const { id, aid } = useParams();
+  console.log(`ASSIGNMENT ID: ${JSON.stringify(aid)}`);
+  console.log(`COURSE ID: ${JSON.stringify(id)}`);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const assignmentsState = useSelector(
+    (state: any) => state.assignmentsReducer
   );
+  const assignments = assignmentsState.assignments;
+
+  useEffect(() => {
+    console.log(`ASSIGNMENTS: ${JSON.stringify(assignments)}`);
+  }, [assignments]);
+
+  const assignment = assignments.find((a: any) => a._id === aid) || {};
+
   console.log(`ASSIGNMENTS: ${JSON.stringify(assignment)}`);
   const { pathname } = useLocation();
-  const course = pathname.split('/')[3]
+  const course = pathname.split('/')[3];
   console.log(`PATHNAME: ${JSON.stringify(pathname)}`);
   console.log(`COURSE ID: ${JSON.stringify(course)}`);
+
+  const [title, setTitle] = useState(assignment.title || '');
+  const [description, setDescription] = useState(assignment.description || '');
+  const [points, setPoints] = useState(assignment.points || '');
+  const [due, setDue] = useState(assignment.due || '');
+  const [available, setAvailable] = useState(assignment.available || '');
+  const [until, setUntil] = useState(assignment.until || '');
+
+  const handleSave = () => {
+    if (aid) {
+      dispatch(
+        updateAssignment({
+          ...assignment,
+          title,
+          description,
+          points,
+          due,
+          available,
+          until,
+        })
+      );
+    } else {
+      dispatch(
+        addAssignment({
+          title,
+          description,
+          points,
+          due,
+          available,
+          until,
+          course: id,
+        })
+      );
+    }
+    navigate(`/Kanbas/Courses/${id}/Assignments`);
+  };
+
+  const handleCancel = () => {
+    navigate(`/Kanbas/Courses/${id}/Assignments`);
+  };
 
   return (
     <div
@@ -22,13 +76,14 @@ export default function AssignmentEditor() {
       style={{ padding: '1.5rem', fontFamily: 'Arial, sans-serif' }}
     >
       <label htmlFor="wd-name">
-        <h6>{assignment?.title}</h6>
+        <h6>Assignment Name</h6>
       </label>
       <input
         type="text"
         className="form-control form-control-lg"
         id="wd-name"
-        value={`${assignment?.title}`}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
         style={{
           padding: '0.5rem',
           fontSize: '1rem',
@@ -42,6 +97,8 @@ export default function AssignmentEditor() {
         id="wd-description"
         className="form-control"
         rows={8}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
         style={{
           width: '100%',
           padding: '0.5rem',
@@ -49,9 +106,7 @@ export default function AssignmentEditor() {
           borderRadius: '0.25rem',
           border: '1px solid #ced4da',
         }}
-      >
-        {assignment?.description}
-      </textarea>
+      />
       <br />
 
       <div style={{ display: 'flex', marginBottom: '1.5rem' }}>
@@ -63,7 +118,8 @@ export default function AssignmentEditor() {
             type="text"
             className="form-control form-control-lg"
             id="wd-points"
-            value={`${assignment?.points}`}
+            value={points}
+            onChange={(e) => setPoints(e.target.value)}
             style={{
               width: '100%',
               padding: '0.5rem',
@@ -246,7 +302,8 @@ export default function AssignmentEditor() {
               <input
                 type="datetime-local"
                 id="dueDate"
-                defaultValue={`${assignment?.due}`}
+                defaultValue={due}
+                onChange={(e) => setDue(e.target.value)}
                 style={{
                   width: '100%',
                   padding: '0.5rem',
@@ -268,7 +325,8 @@ export default function AssignmentEditor() {
                 <input
                   type="datetime-local"
                   id="availableFrom"
-                  defaultValue={`${assignment?.available}`}
+                  defaultValue={available}
+                  onChange={(e) => setAvailable(e.target.value)}
                   style={{
                     width: '100%',
                     padding: '0.5rem',
@@ -288,6 +346,8 @@ export default function AssignmentEditor() {
                 <input
                   type="datetime-local"
                   id="until"
+                  value={until}
+                  onChange={(e) => setUntil(e.target.value)}
                   style={{
                     width: '100%',
                     padding: '0.5rem',
@@ -302,7 +362,7 @@ export default function AssignmentEditor() {
         </div>
       </div>
       <hr />
-      <EditorControls />
+      <EditorControls addAssignment={handleSave} cancel={handleCancel} />
     </div>
   );
 }

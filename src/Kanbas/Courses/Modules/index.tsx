@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useParams } from 'react-router';
-import * as db from '../../Database';
+import { useParams } from 'react-router';
 import LessonControlButtons from './LessonControlButtons';
 import ModulesControls from './ModulesControls';
 import ModuleControlButtons from './ModuleControlButtons';
@@ -14,10 +13,6 @@ export default function Modules() {
   const [moduleName, setModuleName] = useState('');
   const { modules } = useSelector((state: any) => state.modulesReducer);
   const dispatch = useDispatch();
-
-  console.log(`# MODULES: ${modules.length}`);
-  console.log(`MODULES: ${JSON.stringify(modules)}`);
-  console.log(`PATHNAME: ${JSON.stringify(useLocation())}`);
 
   return (
     <div id="wd-modules">
