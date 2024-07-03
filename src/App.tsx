@@ -4,7 +4,7 @@ import Kanbas from './Kanbas';
 import Landing from './Landing';
 import './App.css';
 import './index.css';
-import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (

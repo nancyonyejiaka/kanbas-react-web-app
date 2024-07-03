@@ -4,31 +4,34 @@
     "title": "Lab 1: Implementing User Interfaces with HTML",
     "description": "",
     "url": "https://a1--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab1",
-    "image": "lab1.png",
-    "color": "#FFDAB9"
+    "image": "lab1.png"
   },
   {
     "_id": "Lab2",
     "title": "Lab 2: Styling Web Pages with CSS",
     "description": "",
     "url": "https://a2--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab2",
-    "image": "lab2.png",
-    "color": "#FFFACD"
+    "image": "lab2.png"
   },
   {
     "_id": "Lab3",
     "title": "Lab 3: Creating Single Page Applications with React.js",
     "description": "",
     "url": "https://a3--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab3",
-    "image": "lab3.png",
-    "color": "#FFD1DC"
+    "image": "lab3.png"
   },
   {
     "_id": "Lab4",
     "title": "Lab 4: Managing State in React.js Application",
     "description": "",
     "url": "https://a4--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab4",
-    "image": "RS104.png",
-    "color": "##FFFACD"
+    "image": "RS107.png"
+  },
+  {
+    "_id": "Lab5",
+    "title": "Lab 5: Implementing HTTP Servers and RESTful APIs with Node.js",
+    "description": "",
+    "url": "https://a4--nancy-onyejiaka-kanbas.netlify.app/#/Labs/Lab4",
+    "image": "RS109.png"
   }
 ]
