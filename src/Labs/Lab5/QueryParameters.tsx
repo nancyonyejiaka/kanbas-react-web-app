@@ -22,12 +22,14 @@ export default function QueryParameters() {
         onChange={(e) => setB(e.target.value)}
       />
       <a
+        className="btn btn-primary me-2"
         id="wd-query-parameter-add"
         href={`${REMOTE_SERVER}/lab5/calculator?operation=add&a=${a}&b=${b}`}
       >
         Add {a} + {b}
       </a>
       <a
+        className="btn btn-danger me-2"
         id="wd-query-parameter-subtract"
         href={`${REMOTE_SERVER}/lab5/calculator?operation=subtract&a=${a}&b=${b}`}
       >
@@ -35,12 +37,14 @@ export default function QueryParameters() {
       </a>
       {/* create additional links to test multiply and divide. use IDs starting with wd-query-parameter- */}
       <a
+        className="btn btn-warning me-2"
         id="wd-query-parameter-multiply"
         href={`${REMOTE_SERVER}/lab5/calculator?operation=multiply&a=${a}&b=${b}`}
       >
         Multiply {a} - {b}
       </a>
       <a
+        className="btn btn-info me-2"
         id="wd-query-parameter-subtract"
         href={`${REMOTE_SERVER}/lab5/calculator?operation=divide&a=${a}&b=${b}`}
       >
