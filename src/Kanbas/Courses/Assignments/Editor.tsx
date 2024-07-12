@@ -1,15 +1,13 @@
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAssignment, updateAssignment } from './reducer';
 import EditorControls from './EditorControls';
+import * as client from './client';
 
 export default function AssignmentEditor() {
-  console.log(`PARAMS: ${JSON.stringify(useParams())}`);
   const { id, aid } = useParams();
-  console.log(`ASSIGNMENT ID: ${JSON.stringify(aid)}`);
-  console.log(`COURSE ID: ${JSON.stringify(id)}`);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,12 +22,6 @@ export default function AssignmentEditor() {
 
   const assignment = assignments.find((a: any) => a._id === aid) || {};
 
-  console.log(`ASSIGNMENTS: ${JSON.stringify(assignment)}`);
-  const { pathname } = useLocation();
-  const course = pathname.split('/')[3];
-  console.log(`PATHNAME: ${JSON.stringify(pathname)}`);
-  console.log(`COURSE ID: ${JSON.stringify(course)}`);
-
   const [title, setTitle] = useState(assignment.title || '');
   const [description, setDescription] = useState(assignment.description || '');
   const [points, setPoints] = useState(assignment.points || '');
@@ -37,31 +29,37 @@ export default function AssignmentEditor() {
   const [available, setAvailable] = useState(assignment.available || '');
   const [until, setUntil] = useState(assignment.until || '');
 
+  const createAssignment = async (module: any) => {
+    const newAssignment = await client.createAssignment(id as string, module);
+    dispatch(addAssignment(newAssignment));
+  };
+
+  const saveAssignment = async (assignment: any) => {
+    const status = await client.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+  };
+
   const handleSave = () => {
     if (aid) {
-      dispatch(
-        updateAssignment({
-          ...assignment,
-          title,
-          description,
-          points,
-          due,
-          available,
-          until,
-        })
-      );
+      saveAssignment({
+        ...assignment,
+        title,
+        description,
+        points,
+        due,
+        available,
+        until,
+      });
     } else {
-      dispatch(
-        addAssignment({
-          title,
-          description,
-          points,
-          due,
-          available,
-          until,
-          course: id,
-        })
-      );
+      createAssignment({
+        title,
+        description,
+        points,
+        due,
+        available,
+        until,
+        course: id,
+      });
     }
     navigate(`/Kanbas/Courses/${id}/Assignments`);
   };

@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { useParams } from 'react-router';
 import AssignmentsControlsPanel from './AssignmentsControls';
@@ -10,8 +10,9 @@ import { IoMdArrowDropdown } from 'react-icons/io';
 import { LuClipboardSignature } from 'react-icons/lu';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteAssignment } from './reducer';
+import { setAssignments, deleteAssignment } from './reducer';
 import DeletionModal from './DeletionModal';
+import * as client from './client';
 
 Modal.setAppElement('#root');
 
@@ -47,7 +48,7 @@ export default function Assignments() {
 
   const handleDelete = () => {
     if (selectedAssignment) {
-      dispatch(deleteAssignment(selectedAssignment._id));
+      removeAssignment(selectedAssignment._id);
       closeModal();
     }
   };
@@ -62,6 +63,19 @@ export default function Assignments() {
       minute: 'numeric',
       hour12: true,
     });
+  };
+
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(id as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, []);
+
+  const removeAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
   };
 
   return (

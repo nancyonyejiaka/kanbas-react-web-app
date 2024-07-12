@@ -6,8 +6,17 @@ import { TiDelete } from 'react-icons/ti';
 import { FaPencil } from 'react-icons/fa6';
 
 export default function WorkingWithArraysAsynchronously() {
-  const [todos, setTodos] = useState<any[]>([]);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [todos, setTodos] = useState<any[]>([]);
+
+  const fetchTodos = async () => {
+    const todos = await client.fetchTodos();
+    setTodos(todos);
+  };
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
   const updateTodo = async (todo: any) => {
     try {
       await client.updateTodo(todo);
@@ -36,8 +45,8 @@ export default function WorkingWithArraysAsynchronously() {
   };
 
   const createTodo = async () => {
-    const todos = await client.createTodo();
-    setTodos(todos);
+    const newTodo = await client.createTodo();
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
   };
 
   const postTodo = async () => {
@@ -48,19 +57,11 @@ export default function WorkingWithArraysAsynchronously() {
     setTodos([...todos, newTodo]);
   };
 
-  const fetchTodos = async () => {
-    const todos = await client.fetchTodos();
-    setTodos(todos);
-  };
-
   const removeTodo = async (todo: any) => {
     const updatedTodos = await client.removeTodo(todo);
     setTodos(updatedTodos);
   };
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
   return (
     <div id="wd-asynchronous-arrays">
       <h3>Working with Arrays Asynchronously</h3>

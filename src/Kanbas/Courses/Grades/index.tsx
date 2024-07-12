@@ -10,8 +10,6 @@ import './index.css';
 export default function Grades() {
   const { pathname } = useLocation();
   const course = pathname.split('/')[3];
-  console.log(`PATHNAME: ${JSON.stringify(pathname)}`);
-  console.log(`COURSE ID: ${JSON.stringify(course)}`);
 
   const assignments = [...db.assignments];
   const courseAssignments = assignments.filter(
@@ -19,14 +17,11 @@ export default function Grades() {
   );
 
   const grades = db.grades;
-  const courseGrades = grades.filter((grade: any) => grade.course === course);
-  console.log(`ASSIGNMENTS: ${JSON.stringify(courseGrades)}`);
 
   const enrollments = db.enrollments;
   const enrolled = enrollments.filter(
     (enrollee: any) => enrollee.course === course
   );
-  console.log(`ASSIGNMENTS: ${JSON.stringify(enrolled)}`);
 
   const users = db.users;
   const enrolledUserIds = [...enrolled].map((enrollment) => enrollment.user);
