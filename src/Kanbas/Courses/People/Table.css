@@ -1,0 +1,27 @@
+/* PeopleTable.css */
+#wd-people-table {
+  padding: 1rem;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.table .wd-full-name {
+  display: flex;
+  align-items: center;
+}
+
+.table .wd-full-name .fa-user-circle {
+  margin-right: 0.5rem;
+}
+
+.table .wd-full-name span {
+  display: inline-block;
+}
