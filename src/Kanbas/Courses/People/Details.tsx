@@ -74,17 +74,20 @@ export default function PeopleDetails({
             className="float-end fs-5 mt-2 wd-edit"
           />
         )}
+
         {editing && (
           <FaCheck
             onClick={() => saveUser()}
             className="float-end fs-5 mt-2 me-2 wd-save"
           />
         )}
+
         {!editing && (
           <div className="wd-name" onClick={() => setEditing(true)}>
             {user.firstName} {user.lastName}{' '}
           </div>
         )}
+
         {user && editing && (
           <input
             className="form-control w-50 wd-edit-name"
