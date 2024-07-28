@@ -1,0 +1,25 @@
+/* Signin.css */
+#wd-signin-screen,
+#wd-signup-screen {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.wd-input {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 15px;
+}
+
+.wd-btn {
+  width: 100%;
+  max-width: 100%;
+}
+
+.wd-error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}

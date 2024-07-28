@@ -1,0 +1,12 @@
+/* index.css */
+#wd-account-navigation > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+#wd-account-navigation > .list-group-item {
+  margin-bottom: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

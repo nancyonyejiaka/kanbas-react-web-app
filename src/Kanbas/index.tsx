@@ -1,5 +1,7 @@
+import Account from './Account';
 import Dashboard from './Dashboard';
 import KanbasNavigation from './Navigation';
+import ProtectedRoute from './ProtectedRoute';
 import { Routes, Route, Navigate } from 'react-router';
 import Courses from './Courses';
 import './styles.css';
@@ -59,23 +61,30 @@ export default function Kanbas() {
           </div>
           <div className="flex-fill p-4">
             <Routes>
+              <Route path="/Account/*" element={<Account />} />
               <Route path="/" element={<Navigate to="Dashboard" />} />
               <Route
                 path="Dashboard"
                 element={
-                  <Dashboard
-                    courses={courses}
-                    course={course}
-                    setCourse={setCourse}
-                    addNewCourse={addNewCourse}
-                    deleteCourse={deleteCourse}
-                    updateCourse={updateCourse}
-                  />
+                  <ProtectedRoute>
+                    <Dashboard
+                      courses={courses}
+                      course={course}
+                      setCourse={setCourse}
+                      addNewCourse={addNewCourse}
+                      deleteCourse={deleteCourse}
+                      updateCourse={updateCourse}
+                    />
+                  </ProtectedRoute>
                 }
               />
               <Route
                 path="Courses/:id/*"
-                element={<Courses courses={courses} />}
+                element={
+                  <ProtectedRoute>
+                    <Courses courses={courses} />{' '}
+                  </ProtectedRoute>
+                }
               />
             </Routes>
           </div>
