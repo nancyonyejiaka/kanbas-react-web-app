@@ -20,14 +20,10 @@ export default function Signin() {
 
     try {
       const currentUser = await client.signin(credentials);
-      if (currentUser) {
-        dispatch(setCurrentUser(currentUser));
-        navigate('/Kanbas/Account/Profile');
-      } else {
-        setErrors({ general: 'Invalid username or password' });
-      }
-    } catch (error) {
-      setErrors({ general: 'Signin failed. Please try again.' });
+      dispatch(setCurrentUser(currentUser));
+      navigate('/Kanbas/Account/Profile');
+    } catch (err: any) {
+      setErrors(err.response.data.message);
     }
   };
 

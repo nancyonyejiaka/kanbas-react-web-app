@@ -2,6 +2,7 @@ import Account from './Account';
 import Dashboard from './Dashboard';
 import KanbasNavigation from './Navigation';
 import ProtectedRoute from './ProtectedRoute';
+import Session from './Account/Session';
 import { Routes, Route, Navigate } from 'react-router';
 import Courses from './Courses';
 import './styles.css';
@@ -54,42 +55,44 @@ export default function Kanbas() {
 
   return (
     <Provider store={store}>
-      <div id="wd-kanbas" className="h-100">
-        <div className="d-flex h-100">
-          <div className="d-none d-md-block bg-black full-height">
-            <KanbasNavigation />
-          </div>
-          <div className="flex-fill p-4">
-            <Routes>
-              <Route path="/Account/*" element={<Account />} />
-              <Route path="/" element={<Navigate to="Dashboard" />} />
-              <Route
-                path="Dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard
-                      courses={courses}
-                      course={course}
-                      setCourse={setCourse}
-                      addNewCourse={addNewCourse}
-                      deleteCourse={deleteCourse}
-                      updateCourse={updateCourse}
-                    />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="Courses/:id/*"
-                element={
-                  <ProtectedRoute>
-                    <Courses courses={courses} />{' '}
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
+      <Session>
+        <div id="wd-kanbas" className="h-100">
+          <div className="d-flex h-100">
+            <div className="d-none d-md-block bg-black full-height">
+              <KanbasNavigation />
+            </div>
+            <div className="flex-fill p-4">
+              <Routes>
+                <Route path="/Account/*" element={<Account />} />
+                <Route path="/" element={<Navigate to="Dashboard" />} />
+                <Route
+                  path="Dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard
+                        courses={courses}
+                        course={course}
+                        setCourse={setCourse}
+                        addNewCourse={addNewCourse}
+                        deleteCourse={deleteCourse}
+                        updateCourse={updateCourse}
+                      />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="Courses/:id/*"
+                  element={
+                    <ProtectedRoute>
+                      <Courses courses={courses} />{' '}
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </div>
           </div>
         </div>
-      </div>
+      </Session>
     </Provider>
   );
 }
