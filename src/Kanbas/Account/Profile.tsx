@@ -29,6 +29,17 @@ export default function Profile() {
     navigate('/Kanbas/Account/Signin');
   };
 
+  const saveProfile = async () => {
+    try {
+      await client.updateProfile(profile);
+      await fetchProfile();
+      alert('Profile updated successfully');
+    } catch (err) {
+      console.error('Failed to update profile', err);
+      alert('Failed to update profile. Please try again.');
+    }
+  };
+
   return (
     <div id="wd-profile-screen">
       <h1>Profile</h1>
@@ -88,6 +99,12 @@ export default function Profile() {
             <option value="FACULTY">Faculty</option>
             <option value="STUDENT">Student</option>
           </select>
+          <button
+            onClick={saveProfile}
+            className="wd-save-btn btn btn-primary w-100 mb-2"
+          >
+            Save
+          </button>
           <button
             onClick={signout}
             className="wd-signout-btn btn btn-danger w-100"
