@@ -6,7 +6,7 @@ import PeopleDetails from './Details';
 import './Table.css';
 
 export default function PeopleTable() {
-  const { id } = useParams();
+  const { number } = useParams();
   const [users, setUsers] = useState<any[]>([]);
   const [role, setRole] = useState('');
   const [name, setName] = useState('');
@@ -23,7 +23,7 @@ export default function PeopleTable() {
       role: 'STUDENT',
     });
     setUsers([user, ...users]);
-    navigate(`/Kanbas/Courses/${id}/People/${user._id}`);
+    navigate(`/Kanbas/Courses/${number}/People/${user._id}`);
   };
 
   const filterUsersByName = async (name: string) => {
@@ -98,7 +98,7 @@ export default function PeopleTable() {
                 <div
                   className="d-flex align-items-center"
                   onClick={() =>
-                    navigate(`/Kanbas/Courses/${id}/People/${user._id}`)
+                    navigate(`/Kanbas/Courses/${number}/People/${user._id}`)
                   }
                   style={{ cursor: 'pointer' }} // Added cursor pointer to indicate clickable element
                 >

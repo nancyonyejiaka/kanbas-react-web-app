@@ -6,42 +6,54 @@ import ModuleControlButtons from './ModuleControlButtons';
 import * as client from './client';
 import { BsGripVertical } from 'react-icons/bs';
 
-import {
-  setModules,
-  addModule,
-  editModule,
-  updateModule,
-  deleteModule,
-} from './reducer';
-import { useSelector, useDispatch } from 'react-redux';
-
 export default function Modules() {
-  const { id } = useParams();
+  const { number } = useParams();
+  const [modules, setModules] = useState<any[]>([]);
   const [moduleName, setModuleName] = useState('');
-  const { modules } = useSelector((state: any) => state.modulesReducer);
-  const dispatch = useDispatch();
-
-  const createModule = async (module: any) => {
-    const newModule = await client.createModule(id as string, module);
-    dispatch(addModule(newModule));
-  };
+  const [editing, setEditing] = useState(false);
 
   const fetchModules = async () => {
-    const modules = await client.findModulesForCourse(id as string);
-    dispatch(setModules(modules));
+    const modules = await client.findModulesForCourse(number);
+    console.log(modules);
+    setModules(modules);
   };
   useEffect(() => {
     fetchModules();
   }, []);
 
-  const removeModule = async (moduleId: string) => {
+  const createModule = async () => {
+    const module = { name: moduleName, course: number };
+    const newModule = await client.createModule(number, module);
+    setModules([...modules, newModule]);
+  };
+
+  const deleteModule = async (moduleId: string) => {
     await client.deleteModule(moduleId);
-    dispatch(deleteModule(moduleId));
+    fetchModules();
   };
 
   const saveModule = async (module: any) => {
-    const status = await client.updateModule(module);
-    dispatch(updateModule(module));
+    const updatedModule = { ...module, editing: false };
+    await client.updateModule(updatedModule);
+    setModules(modules.map((m) => (m._id === module._id ? updatedModule : m)));
+  };
+
+  const toggleEditModule = (moduleId: string) => {
+    setModules(
+      modules.map((module) =>
+        module._id === moduleId
+          ? { ...module, editing: !module.editing }
+          : module
+      )
+    );
+  };
+
+  const handleModuleNameChange = (moduleId: string, name: string) => {
+    setModules(
+      modules.map((module) =>
+        module._id === moduleId ? { ...module, name } : module
+      )
+    );
   };
 
   return (
@@ -50,7 +62,7 @@ export default function Modules() {
         setModuleName={setModuleName}
         moduleName={moduleName}
         addModule={() => {
-          createModule({ name: moduleName, course: id });
+          createModule();
           setModuleName('');
         }}
       />
@@ -59,9 +71,8 @@ export default function Modules() {
       <br />
       <br />
       <ul id="wd-modules" className="list-group rounded-0">
-        {modules
-          .filter((module: any) => module.course === id)
-          .map((module: any) => (
+        {modules &&
+          modules.map((module: any) => (
             <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
               <div className="wd-title p-3 ps-2 bg-secondary">
                 <BsGripVertical className="me-2 fs-3" />
@@ -70,11 +81,11 @@ export default function Modules() {
                   <input
                     className="form-control w-50 d-inline-block"
                     onChange={(e) =>
-                      saveModule({ ...module, name: e.target.value })
+                      handleModuleNameChange(module._id, e.target.value)
                     }
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
-                        saveModule({ ...module, editing: false });
+                        saveModule(module);
                       }
                     }}
                     value={module.name}
@@ -83,9 +94,9 @@ export default function Modules() {
                 <ModuleControlButtons
                   moduleId={module._id}
                   deleteModule={(moduleId) => {
-                    removeModule(moduleId);
+                    deleteModule(moduleId);
                   }}
-                  editModule={(moduleId) => dispatch(editModule(moduleId))}
+                  toggleEditModule={(moduleId) => toggleEditModule(moduleId)}
                 />
               </div>
               {module.lessons && (

@@ -5,13 +5,12 @@ import Modules from './Modules';
 import Home from './Home';
 import Grades from './Grades';
 import PeopleTable from './People/Table';
-import PeopleDetails from './People/Details';
 import { Navigate, Route, Routes, useParams, useLocation } from 'react-router';
 import { FaAlignJustify } from 'react-icons/fa6';
 
 export default function Courses({ courses }: { courses: any[] }) {
-  const { id } = useParams();
-  const course = courses.find((course) => course._id === id);
+  const { number } = useParams();
+  const course = courses.find((course) => course.number === number);
   const { pathname } = useLocation();
 
   return (

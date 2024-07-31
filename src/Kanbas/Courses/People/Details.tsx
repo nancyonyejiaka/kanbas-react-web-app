@@ -11,7 +11,7 @@ export default function PeopleDetails({
   fetchUsers: () => void;
 }) {
   const navigate = useNavigate();
-  const { uid, id } = useParams();
+  const { uid, number } = useParams();
 
   const [user, setUser] = useState<any>({});
   const [name, setName] = useState('');
@@ -26,13 +26,13 @@ export default function PeopleDetails({
     setUser(updatedUser);
     setEditing(false);
     fetchUsers();
-    navigate(`/Kanbas/Courses/${id}/People`);
+    navigate(`/Kanbas/Courses/${number}/People`);
   };
 
   const deleteUser = async (uid: string) => {
     await client.deleteUser(uid);
     fetchUsers();
-    navigate(`/Kanbas/Courses/${id}/People`);
+    navigate(`/Kanbas/Courses/${number}/People`);
   };
 
   const fetchUser = async () => {
@@ -61,7 +61,7 @@ export default function PeopleDetails({
           zIndex: 1,
           cursor: 'pointer',
         }}
-        onClick={() => navigate(`/Kanbas/Courses/${id}/People`)}
+        onClick={() => navigate(`/Kanbas/Courses/${number}/People`)}
       />
       <div className="text-center mt-2">
         <FaUserCircle className="text-secondary me-2 fs-1" />
@@ -142,7 +142,7 @@ export default function PeopleDetails({
         Delete
       </button>
       <button
-        onClick={() => navigate(`/Kanbas/Courses/${id}/People`)}
+        onClick={() => navigate(`/Kanbas/Courses/${number}/People`)}
         className="btn btn-secondary float-start float-end me-2 wd-cancel"
       >
         Cancel

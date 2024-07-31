@@ -3,7 +3,7 @@ const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 
 export const updateCourse = async (course: any) => {
-  const response = await axios.put(`${COURSES_API}/${course._id}`, course);
+  const response = await axios.put(`${COURSES_API}/${course.number}`, course);
   return response.data;
 };
 

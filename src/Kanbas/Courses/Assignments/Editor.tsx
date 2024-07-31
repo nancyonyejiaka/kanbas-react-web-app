@@ -7,7 +7,7 @@ import EditorControls from './EditorControls';
 import * as client from './client';
 
 export default function AssignmentEditor() {
-  const { id, aid } = useParams();
+  const { number, aid } = useParams();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function AssignmentEditor() {
   const [until, setUntil] = useState(assignment.until || '');
 
   const createAssignment = async (module: any) => {
-    const newAssignment = await client.createAssignment(id as string, module);
+    const newAssignment = await client.createAssignment(number as string, module);
     dispatch(addAssignment(newAssignment));
   };
 
@@ -58,14 +58,14 @@ export default function AssignmentEditor() {
         due,
         available,
         until,
-        course: id,
+        course: number,
       });
     }
-    navigate(`/Kanbas/Courses/${id}/Assignments`);
+    navigate(`/Kanbas/Courses/${number}/Assignments`);
   };
 
   const handleCancel = () => {
-    navigate(`/Kanbas/Courses/${id}/Assignments`);
+    navigate(`/Kanbas/Courses/${number}/Assignments`);
   };
 
   return (

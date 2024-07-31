@@ -2,18 +2,18 @@ import './index.css';
 import { Link, useLocation, useParams } from 'react-router-dom';
 
 export default function CoursesNavigation() {
-  const { id } = useParams();
+  const { number } = useParams();
   const { pathname } = useLocation();
 
   const links = [
-    { label: 'Home', path: `/Kanbas/Courses/${id}/Home` },
-    { label: 'Modules', path: `/Kanbas/Courses/${id}/Modules` },
-    { label: 'Piazza', path: `/Kanbas/Courses/${id}/Piazza` },
-    { label: 'Zoom', path: `/Kanbas/Courses/${id}/Zoom` },
-    { label: 'Assignments', path: `/Kanbas/Courses/${id}/Assignments` },
-    { label: 'Quizzes', path: `/Kanbas/Courses/${id}/Quizzes` },
-    { label: 'Grades', path: `/Kanbas/Courses/${id}/Grades` },
-    { label: 'People', path: `/Kanbas/Courses/${id}/People` },
+    { label: 'Home', path: `/Kanbas/Courses/${number}/Home` },
+    { label: 'Modules', path: `/Kanbas/Courses/${number}/Modules` },
+    { label: 'Piazza', path: `/Kanbas/Courses/${number}/Piazza` },
+    { label: 'Zoom', path: `/Kanbas/Courses/${number}/Zoom` },
+    { label: 'Assignments', path: `/Kanbas/Courses/${number}/Assignments` },
+    { label: 'Quizzes', path: `/Kanbas/Courses/${number}/Quizzes` },
+    { label: 'Grades', path: `/Kanbas/Courses/${number}/Grades` },
+    { label: 'People', path: `/Kanbas/Courses/${number}/People` },
   ];
 
   return (

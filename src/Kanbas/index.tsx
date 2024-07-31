@@ -21,30 +21,53 @@ export default function Kanbas() {
     findAllCourses();
   }, []);
 
+  function generateCourseNumber(courseName: string) {
+    let abbreviation;
+    const words = courseName.split(' ');
+
+    if (words.length === 1) {
+      abbreviation = courseName.slice(0, 2).toUpperCase();
+    } else {
+      abbreviation = words
+        .map((word) => word[0])
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
+    }
+
+    const randomFourDigitNumber = Math.floor(1000 + Math.random() * 9000);
+    return `${abbreviation}${randomFourDigitNumber}`;
+  }
+
   const [course, setCourse] = useState<any>({
-    _id: '1234',
     name: 'New Course',
-    number: 'New Number',
+    number: 'NC123',
     startDate: '2023-09-10',
     endDate: '2023-12-15',
     image: '/images/reactjs.jpg',
     description: 'New Description',
   });
+
   const addNewCourse = async () => {
-    const newCourse = await client.createCourse(course);
-    setCourses([...courses, newCourse]);
+    const newCourse = {
+      ...course,
+      number: generateCourseNumber(course.name), // Generate the course number
+    };
+    setCourse(newCourse);
+    const createdCourse = await client.createCourse(newCourse);
+    setCourses([...courses, createdCourse]);
   };
 
-  const deleteCourse = async (courseId: any) => {
-    await client.deleteCourse(courseId);
-    setCourses(courses.filter((course) => course._id !== courseId));
+  const deleteCourse = async (courseNum: any) => {
+    await client.deleteCourse(courseNum);
+    setCourses(courses.filter((course) => course.number !== courseNum));
   };
 
   const updateCourse = async () => {
     await client.updateCourse(course);
     setCourses(
       courses.map((c) => {
-        if (c._id === course._id) {
+        if (c.number === course.number) {
           return course;
         } else {
           return c;
@@ -81,7 +104,7 @@ export default function Kanbas() {
                   }
                 />
                 <Route
-                  path="Courses/:id/*"
+                  path="Courses/:number/*"
                   element={
                     <ProtectedRoute>
                       <Courses courses={courses} />{' '}

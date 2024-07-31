@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './index.css';
 
 export default function AssignmentsControls() {
-  const { id: courseId } = useParams();
+  const { number } = useParams();
   const navigate = useNavigate();
 
   return (
@@ -13,7 +13,7 @@ export default function AssignmentsControls() {
       <button
         id="wd-add-assignment-btn"
         className="btn btn-lg btn-danger me-1 float-end"
-        onClick={() => navigate(`/Kanbas/Courses/${courseId}/Assignments/new`)}
+        onClick={() => navigate(`/Kanbas/Courses/${number}/Assignments/new`)}
       >
         <FaPlus className="position-relative me-2" style={{ bottom: '1px' }} />
         Assignment

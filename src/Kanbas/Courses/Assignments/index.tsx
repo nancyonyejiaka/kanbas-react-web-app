@@ -28,7 +28,7 @@ interface Assignment {
 }
 
 export default function Assignments() {
-  const { id } = useParams();
+  const { number } = useParams();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ export default function Assignments() {
   };
 
   const fetchAssignments = async () => {
-    const assignments = await client.findAssignmentsForCourse(id as string);
+    const assignments = await client.findAssignmentsForCourse(number as string);
     dispatch(setAssignments(assignments));
   };
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function Assignments() {
             style={{ borderLeft: '4px solid green' }}
           >
             {assignments
-              .filter((assignment: any) => assignment.course === id)
+              .filter((assignment: any) => assignment.course === number)
               .map((assignment: any) => (
                 <li
                   className="wd-assignment-item list-group-item p-3 ps-1 align-items-center"
